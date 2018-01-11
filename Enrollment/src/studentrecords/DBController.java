@@ -103,6 +103,30 @@ public class DBController {
     	ps.setString(1, classcode);
     	ps.executeUpdate();
     }
+    //-------------------READ FUNCTIONALITY-----------------------------------------
+    public ResultSet getSubjects() throws Exception {
+        statement = connection.createStatement();
+        sql = "SELECT * FROM subject;";
+        return statement.executeQuery(sql);
+    }
+    
+    public ResultSet getStudents() throws Exception {
+        statement = connection.createStatement();
+        sql = "SELECT * FROM students;";
+        return statement.executeQuery(sql);
+    }
+    public ResultSet getClass() throws Exception {
+        statement = connection.createStatement();
+        sql = "SELECT * FROM class;";
+        return statement.executeQuery(sql);
+    }
+    public ResultSet getEnroll() throws Exception {
+        statement = connection.createStatement();
+        sql = "SELECT * FROM enroll;";
+        return statement.executeQuery(sql);
+    }
+    
+//------------------------------------------------------------------------------
 	//-------------------------Extra Feature---------------------------------------------//
     //gets students in a class  (Henry)
     public ResultSet getClassStudent(int classCode) throws Exception {

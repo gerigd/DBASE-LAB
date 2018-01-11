@@ -365,4 +365,114 @@ public class StudentRecords {
 	int code = Integer.parseInt(kb.nextLine());
 	return getSubjClass(code);
 	}
+        //----------------------READ FUNCTIONALITY------------------------//
+            private static int getResTotal(ResultSet rs) throws Exception {
+                int count = 0;
+                rs.last();
+                count = rs.getRow();
+                rs.beforeFirst();
+                return count;    	
+            }
+        
+            public static void printStudents(){
+                try {
+                    ResultSet rs = controller.getStudents();
+                    if (getResTotal(rs) == 0) {
+                            System.out.println("Error: no records found!!!");
+                    } else {      			
+                        System.out.printf("     %-15s %-20s %-15s %-10s %-15s %-10s %-25s%n",
+                                        "IDNo","LastName","FirstName","MidInit", "Gender", "ContactNo","Email");
+                        int row = 1;
+                        while (rs.next()) {          
+                            String idno = rs.getString(1);
+                            String lastname = rs.getString(2);
+                            String firstname = rs.getString("firstname");
+                            String midInitial = rs.getString("midInitial");
+                            String gender = filterNull(rs.getString("gender"));
+                            String contactno = rs.getString("contactno");
+                            String email = rs.getString("email");
+                            System.out.printf("%-4d %-15s %-20s %-15s %-10s %-15s %-10s %-25s%n",
+                                        row++, idno, lastname, firstname, midInitial, gender, contactno, email);
+                        }
+                    }		
+                    printDivider();
+                    System.out.println();
+                } catch (Exception e) {
+                        System.err.println("error: " + e.getClass() + "\n" + e.getMessage());
+                }
+            }
+       
+            public static void printSubjects(){
+                try {
+                    ResultSet rs = controller.getSubject();
+                    if (getResTotal(rs) == 0) {
+                            System.out.println("Error: no records found!!!");
+                    } else {   		
+                        System.out.printf("     %-15s %-20s %-15s %n",
+                                        "SubjID","Title","Units");
+                        int row = 1;
+                        while (rs.next()) {          
+                            String subjid = filterNull(rs.getString("subjid"));
+                            String title = filterNull(rs.getString("title"));
+                            String units = filterNull(rs.getString("units"));
+                            System.out.printf("%-4d %-15s %-20s %-15s %n",
+                                        row++, subjid, title, units);
+                        }
+                    }		
+                    printDivider();
+                    System.out.println();
+                } catch (Exception e) {
+                        System.err.println("error: " + e.getClass() + "\n" + e.getMessage());
+                }
+            }
+        
+            public static void printClass(){
+                try {
+                    ResultSet rs = controller.getClass();
+                    if (getResTotal(rs) == 0) {
+                            System.out.println("Error: no records found!!!");
+                    } else {   		
+                        System.out.printf("     %-15s %-20s %-15s %-10s %n",
+                                        "Classcode","Time","Day","SubjId");
+                        int row = 1;
+                        while (rs.next()) {          
+                            String classcode = filterNull(rs.getString("classocde"));
+                            String time = filterNull(rs.getString("time"));
+                            String day = filterNull(rs.getString("day"));
+							String time = filterNull(rs.getString("time"));
+                            System.out.printf("%-4d %-15s %-20s %-15s %n",
+                                        row++, classcode, time, day, subjid);
+                        }
+                    }		
+                    printDivider();
+                    System.out.println();
+                } catch (Exception e) {
+                        System.err.println("error: " + e.getClass() + "\n" + e.getMessage());
+                }
+            }
+      
+            public static void printEnroll(){
+                try {
+                    ResultSet rs = controller.getEnroll();
+                    if (getResTotal(rs) == 0) {
+                            System.out.println("Error: no records found!!!");
+                    } else {   		
+                        System.out.printf("     %-15s %-20s %-15s %n",
+                                        "Classcode","IDNo","Date Submitted");
+                        int row = 1;
+                        while (rs.next()) {          
+                            String classcode = filterNull(rs.getString("classocde"));
+                            String idno = filterNull(rs.getString("idno"));
+                            String datesubmitted = filterNull(rs.getString("datesubmitted"));
+                            System.out.printf("%-4d %-15s %-20s %-15s %n",
+                                        row++, classcode, idno, datesubmitted);
+                        }
+                    }		
+                    printDivider();
+                    System.out.println();
+                } catch (Exception e) {
+                        System.err.println("error: " + e.getClass() + "\n" + e.getMessage());
+                }
+            }
+        //--------------------------------------------------------------------//
 }
