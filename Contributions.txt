@@ -23,3 +23,7 @@ Mitz Mitchie  - Added deleteClass method in DBController.
               - Created an instatiation of Scanner object in StudentRecords.java.
               - Created a static DBController control in StudentRecords.java.
               - Added control = new DBController(); in the main method.
+	      
+Gerichelle Abiera - Added Update Functionalities in DBController.java
+		  - Created updateAccount method in StudentRecords.java
+		  - Created updateSubject method in StudentRecords.java
